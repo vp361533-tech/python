@@ -1,0 +1,2 @@
+# python
+ primeiro prejeto django
