@@ -1,36 +1,33 @@
 # cadastro\views.py
 
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from cadastro.forms import PessoaForm
 from cadastro.models import Pessoa
 
 
 def index(request):
-
-    # Recebe todas as "Pessoa" do banco de dados
+    # Recebe todas as pessoas do banco de dados
     # pessoas = Pessoa.objects.all()
 
-    # Recebe todas as "Pessoa" do banco na oredem alfabética do "nome"
+    # Recebe todas as pessoas em ordem alfabética do nome
     pessoas = Pessoa.objects.order_by('nome')
+
+    # Total de cadastrados
     total = Pessoa.objects.count()
 
-    contexto = {
-        # Passa todas as "Pessoa" para o template
+    # Dicionário que passa dados para o template
+    context = {
         'pessoas': pessoas,
         'total': total,
-        'dono': 'Joca da Silva',
     }
-    return render(request, 'cadastro/index.html', contexto)
+    return render(request, 'cadastro/index.html', context)
 
 
 def contato(request):
-    contexto = {
-        'dono': 'Joca da Silva',
-    }
-    return render(request, 'cadastro/contato.html', contexto)
+    return render(request, 'cadastro/contato.html')
 
-# Processa o formulário de cadastro de pessoas
+
 def adicionar(request):
     if request.method == 'POST':
         form = PessoaForm(request.POST)
@@ -40,3 +37,29 @@ def adicionar(request):
     else:
         form = PessoaForm()
     return render(request, 'cadastro/adicionar.html', {'form': form})
+
+
+
+def detalhe(request, id):
+    pessoa = get_object_or_404(Pessoa, id=id)
+    return render(request, 'cadastro/detalhe.html', {'pessoa': pessoa})
+
+
+def editar(request, id):
+    pessoa = get_object_or_404(Pessoa, id=id)
+    if request.method == 'POST':
+        form = PessoaForm(request.POST, instance=pessoa)
+        if form.is_valid():
+            form.save()
+            return redirect('detalhe', id=id)
+    else:
+        form = PessoaForm(instance=pessoa)
+    return render(request, 'cadastro/editar.html', {'form': form, 'pessoa': pessoa})
+
+
+def deletar(request, id):
+    pessoa = get_object_or_404(Pessoa, id=id)
+    if request.method == 'POST':
+        pessoa.delete()
+        return redirect('index')
+    return render(request, 'cadastro/deletar.html', {'pessoa': pessoa})
