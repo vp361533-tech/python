@@ -1,9 +1,9 @@
 # cadastro\views.py
 
 from django.shortcuts import get_object_or_404, redirect, render
-
 from cadastro.forms import PessoaForm
 from cadastro.models import Pessoa
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -27,7 +27,7 @@ def index(request):
 def contato(request):
     return render(request, 'cadastro/contato.html')
 
-
+@login_required
 def adicionar(request):
     if request.method == 'POST':
         form = PessoaForm(request.POST)
