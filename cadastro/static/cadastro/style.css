@@ -6,7 +6,7 @@ body {
 }
 
 nav {
-    background-color: #1100f8;
+    background-color: #f0e87f;
     padding: 10px;
     border-radius: 5px;
 }
@@ -18,14 +18,15 @@ nav a {
 }
 
 h1 {
-    color: #0f0e4d;
+    color: #726f6e;
 }
 
 button {
-    background-color: #f7efef;
-    color: rgb(243, 0, 0);
+    background-color: #bf0404cd;
+    color: rgb(255, 255, 255);
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
+

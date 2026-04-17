@@ -124,6 +124,6 @@ STATIC_URL = 'static/'
 APP_NAME = 'Cadastro de Gente'
 APP_OWNER = 'Luferat'
 
-# URLs para login e logout
+# URLs para retorno após login e logout
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'

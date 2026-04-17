@@ -4,12 +4,22 @@
 
 {% block conteudo %}
     <h2>Cadastrar Pessoa</h2>
-
-    <p>Preencha todos os campos.</p>
+    <p class="text-muted mb-4">Preencha todos os campos.</p>
 
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
+        
+        {% for field in form %}
+        <p class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {{ field.errors }}
+        </p>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 {% endblock %}

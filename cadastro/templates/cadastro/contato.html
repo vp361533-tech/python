@@ -1,8 +1,52 @@
-{% extends 'cadastro/base.html' %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEON CONTACT • Faça Contato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NEON<span class="glow">CONTACT</span></h1>
+            <p class="subtitle">Conecte-se • Resolva • Evolua</p>
+        </header>
 
-{% block titulo %}Contato{% endblock %}
+        <div class="main-content">
 
-{% block conteudo %}
-    <h1>Faça Contato!</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-{% endblock %}
+            <!-- Formulário Futurista -->
+            <section class="form-section">
+                <h2>Envie seu problema para o futuro</h2>
+                
+                <form action="#" method="POST">
+                    <div class="input-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="mensagem">Descreva seu problema</label>
+                        <textarea id="mensagem" name="mensagem" rows="2" 
+                                  placeholder="O que você precisa resolver hoje?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-neon">
+                        <span>ENVIAR PARA O FUTURO</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Lista de Contatos Já Enviados -->
+            <section class="lista-section">
+                <h2>TRANSMISSÕES RECEBIDAS</h2>
